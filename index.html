@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Artico — Dečiji kreativni atelje | Šolina 7A, Beograd</title>
+<meta name="description" content="Kreativne radionice za decu 7–14 godina u Beogradu. Crtanje, slikanje, modni dizajn i modelovanje. Prvi čas besplatan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Caveat:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;color:#4A3344;background-color:#FFF9F0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");-webkit-font-smoothing:antialiased;line-height:1.6;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+input,select,textarea,button{font-family:inherit;}
+ul{list-style:none;}
+
+@keyframes floatA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(14px,-18px) scale(1.06)}}
+@keyframes floatB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-18px,12px) scale(1.04)}}
+@keyframes floatC{0%,100%{transform:translate(0,0) rotate(0deg)}50%{transform:translate(10px,14px) rotate(6deg)}}
+
+/* ── Layout ── */
+.container{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,40px);}
+.section{padding:clamp(40px,7vw,84px) 0;}
+
+/* ── Header ── */
+.header{position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px clamp(16px,4vw,52px);background:rgba(255,249,240,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(74,51,68,.08);}
+.header-logo{height:42px;cursor:pointer;}
+.desktop-nav{display:flex;align-items:center;gap:2px;}
+.desktop-nav a{background:none;border:none;cursor:pointer;font-weight:700;font-size:15px;color:#4A3344;padding:9px 13px;border-radius:11px;transition:background .15s;}
+.desktop-nav a:hover{background:rgba(183,155,216,.22);}
+.cta-pill{margin-left:8px;background:#8E6486;color:#fff!important;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:15px;padding:11px 20px;border-radius:999px;box-shadow:0 8px 18px -7px rgba(142,100,134,.65);transition:background .15s;}
+.cta-pill:hover{background:#6F4A67;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:#fff;border:1px solid rgba(74,51,68,.12);cursor:pointer;padding:11px;border-radius:13px;box-shadow:0 4px 10px -6px rgba(74,51,68,.3);}
+.hamburger span{width:20px;height:2.5px;background:#4A3344;border-radius:2px;display:block;transition:transform .2s;}
+.mobile-menu{display:none;position:sticky;top:63px;z-index:55;background:rgba(255,249,240,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(74,51,68,.08);padding:10px clamp(16px,4vw,52px) 18px;flex-direction:column;gap:4px;box-shadow:0 16px 28px -22px rgba(74,51,68,.5);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{text-align:left;font-weight:700;font-size:17px;color:#4A3344;padding:13px 10px;border-radius:11px;border-bottom:1px solid rgba(74,51,68,.06);display:block;}
+.mobile-menu .mob-cta{margin-top:8px;background:#8E6486;color:#fff;border:none;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;padding:15px;border-radius:14px;text-align:center;border-bottom:none;}
+
+/* ── Sticky mobile CTA ── */
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:70;background:rgba(255,249,240,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(74,51,68,.08);box-shadow:0 -10px 26px -18px rgba(74,51,68,.5);padding:10px 14px calc(10px + env(safe-area-inset-bottom));}
+.sticky-cta .btn-primary{width:100%;font-size:16px;padding:15px;}
+.spacer-mobile{display:none;height:84px;}
+
+/* ── Typography ── */
+.eyebrow{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(20px,2.4vw,26px);color:#6F4A67;}
+.eyebrow-light{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(20px,2.4vw,26px);color:#B79BD8;}
+.eyebrow-gold{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(20px,2.4vw,26px);color:#F7E0A8;}
+h1{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(36px,6.2vw,66px);line-height:1.04;color:#4A3344;letter-spacing:-.5px;}
+h2{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.1;color:#4A3344;}
+h3{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(19px,2vw,22px);line-height:1.2;color:#4A3344;}
+.lead{font-size:clamp(16px,1.9vw,20px);line-height:1.55;color:#6E5667;max-width:38em;}
+.text-center{text-align:center;}
+.mx-auto{margin-left:auto;margin-right:auto;}
+
+/* ── Buttons ── */
+.btn-primary{display:inline-block;background:#8E6486;color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(16px,1.7vw,19px);padding:16px 28px;border-radius:999px;border:none;cursor:pointer;box-shadow:0 12px 26px -8px rgba(142,100,134,.6);transition:transform .15s,background .15s;}
+.btn-primary:hover{transform:translateY(-2px);background:#6F4A67;}
+.btn-outline{display:inline-block;background:#fff;color:#4A3344;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(15px,1.6vw,18px);padding:15px 24px;border-radius:999px;border:1.5px solid rgba(74,51,68,.16);cursor:pointer;transition:border-color .15s,background .15s;}
+.btn-outline:hover{border-color:#B79BD8;background:#F3FAFF;}
+.btn-soft{display:inline-block;background:rgba(142,100,134,.12);color:#6F4A67;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:15px;padding:11px 22px;border-radius:999px;border:none;cursor:pointer;transition:background .15s;}
+.btn-soft:hover{background:rgba(142,100,134,.22);}
+
+/* ── Cards ── */
+.card{background:#fff;border-radius:22px;padding:clamp(24px,3vw,36px);box-shadow:0 14px 34px -26px rgba(74,51,68,.45);}
+.card-hover{transition:transform .2s;}
+.card-hover:hover{transform:translateY(-4px);}
+
+/* ── Hero ── */
+.hero{position:relative;overflow:hidden;padding:clamp(40px,7vw,86px) 0 clamp(40px,6vw,72px);}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(34px);mix-blend-mode:multiply;pointer-events:none;}
+.hero-flex{position:relative;display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,60px);align-items:center;}
+.hero-text{flex:1 1 380px;min-width:280px;}
+.hero-visual{flex:1 1 340px;min-width:270px;position:relative;display:flex;justify-content:center;}
+.hero-img-stack{position:relative;width:min(440px,100%);aspect-ratio:4/3;}
+.hero-img-stack img{position:absolute;border:3px solid #fff;border-radius:16px;box-shadow:0 18px 36px -18px rgba(74,51,68,.45);object-fit:cover;width:54%;height:62%;}
+.hero-img-stack img:nth-child(1){top:8%;left:4%;transform:rotate(-7deg);z-index:1;}
+.hero-img-stack img:nth-child(2){top:0;right:2%;width:52%;height:58%;transform:rotate(5deg);z-index:2;}
+.hero-img-stack img:nth-child(3){bottom:2%;left:24%;height:56%;transform:rotate(-2deg);z-index:3;box-shadow:0 22px 42px -18px rgba(74,51,68,.5);}
+.hero-tape{position:absolute;top:-6%;left:38%;width:90px;height:26px;background:rgba(247,224,168,.7);transform:rotate(-8deg);border-radius:3px;z-index:4;}
+.location-pill{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid rgba(74,51,68,.1);border-radius:999px;padding:8px 16px 8px 12px;margin-bottom:24px;box-shadow:0 6px 16px -10px rgba(74,51,68,.4);}
+.location-dot{width:11px;height:11px;border-radius:50%;background:#8E6486;display:block;box-shadow:0 0 0 4px rgba(142,100,134,.18);}
+.handwritten{font-family:'Caveat',cursive;font-weight:600;font-size:21px;color:#6E5667;transform:rotate(-1.5deg);margin-top:16px;}
+
+/* ── Facts bar ── */
+.facts-bar{position:relative;z-index:5;margin-top:-36px;margin-bottom:clamp(20px,4vw,40px);}
+.facts-card{display:flex;flex-wrap:wrap;justify-content:center;gap:0;padding:clamp(20px,3vw,32px) clamp(16px,2.5vw,32px);background:#fff;border-radius:24px;box-shadow:0 22px 48px -28px rgba(74,51,68,.45);}
+.fact{flex:1 1 auto;text-align:center;padding:10px clamp(12px,2vw,24px);position:relative;}
+.fact:not(:last-child)::after{content:'';position:absolute;right:0;top:15%;height:70%;width:1px;background:rgba(74,51,68,.1);}
+.fact-num{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(24px,3vw,32px);line-height:1.1;display:block;}
+.fact-label{font-size:13px;font-weight:700;color:#6E5667;display:block;}
+
+/* ── Grid layouts ── */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2.5vw,28px);}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,40px);}
+
+/* ── Benefit cards ── */
+.benefit-icon{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px;}
+
+/* ── Program cards ── */
+.program-card{overflow:hidden;}
+.program-card .program-img{height:200px;border-radius:16px;overflow:hidden;margin-bottom:20px;}
+.program-card .program-img img{width:100%;height:100%;object-fit:cover;}
+.program-tag{display:inline-block;font-size:13px;font-weight:700;padding:6px 14px;border-radius:999px;margin-bottom:12px;}
+
+/* ── Veliko platno ── */
+.platno-section{position:relative;overflow:hidden;}
+.platno-flex{display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,56px);align-items:center;}
+.platno-img{flex:1 1 340px;min-width:280px;}
+.platno-img img{width:100%;border-radius:20px;box-shadow:0 22px 50px -28px rgba(74,51,68,.5);aspect-ratio:3/4;object-fit:cover;}
+.platno-text{flex:1 1 380px;min-width:280px;}
+
+/* ── Full-bleed bands ── */
+.band-dark{background:#4A3344;color:#fff;border-radius:28px;padding:clamp(36px,5vw,64px);position:relative;overflow:hidden;}
+.band-dark .lead{color:rgba(255,255,255,.78);}
+.band-dark h2{color:#fff;}
+.band-gradient{background:linear-gradient(180deg,rgba(247,224,168,.28),rgba(236,198,224,.28));position:relative;overflow:hidden;}
+.band-sand{background:#FAF3E8;border-radius:20px;padding:clamp(24px,3vw,40px);}
+
+/* ── Photo grid ── */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:clamp(10px,1.5vw,16px);}
+.photo-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px;border:2px solid #fff;box-shadow:0 10px 24px -16px rgba(74,51,68,.4);transition:transform .2s;}
+.photo-grid img:hover{transform:translateY(-4px);}
+
+/* ── Corporate ── */
+.corp-list{margin-top:24px;}
+.corp-list li{padding:8px 0 8px 24px;position:relative;color:#6E5667;font-size:clamp(15px,1.7vw,17px);}
+.corp-list li::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#D89BC4,#B79BD8);}
+
+/* ── Contact form ── */
+.form-card{background:#fff;border-radius:24px;padding:clamp(24px,3.5vw,40px);box-shadow:0 14px 34px -26px rgba(74,51,68,.45);}
+.form-group{margin-bottom:18px;}
+.form-group label{display:block;font-size:14px;font-weight:700;color:#4A3344;margin-bottom:6px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:13px 15px;border:1.5px solid rgba(74,51,68,.16);border-radius:12px;font-size:15px;color:#4A3344;background:#fff;outline:none;transition:border-color .15s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#8E6486;}
+.form-group textarea{resize:vertical;}
+.form-error{font-size:13px;font-weight:600;color:#B0568C;margin-top:4px;display:none;}
+.form-group.has-error .form-error{display:block;}
+.form-group.has-error input,.form-group.has-error select,.form-group.has-error textarea{border-color:#B0568C;}
+.form-success{text-align:center;padding:40px 20px;display:none;}
+.form-success .success-circle{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#D89BC4,#B79BD8);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px;color:#fff;}
+
+/* ── Contact info ── */
+.contact-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#FFF9F0;border-radius:14px;margin-bottom:10px;transition:background .15s;}
+.contact-row:hover{background:#F5EFE6;}
+.contact-icon{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#ECC6E0,#D4C2EC);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.contact-row span{font-weight:600;font-size:15px;color:#4A3344;}
+
+/* ── FAQ ── */
+.faq-list{max-width:780px;margin:0 auto;}
+.faq-item{background:#fff;border-radius:16px;margin-bottom:10px;box-shadow:0 6px 18px -14px rgba(74,51,68,.3);overflow:hidden;}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;font-weight:700;font-size:16px;color:#4A3344;border:none;background:none;width:100%;text-align:left;font-family:'Nunito',sans-serif;}
+.faq-toggle{width:28px;height:28px;border-radius:50%;background:rgba(142,100,134,.12);color:#8E6486;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;flex-shrink:0;transition:transform .2s;}
+.faq-item.open .faq-toggle{transform:rotate(45deg);}
+.faq-a{padding:0 22px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;}
+.faq-item.open .faq-a{max-height:200px;padding:0 22px 18px;}
+.faq-a p{font-size:15px;color:#6E5667;line-height:1.6;}
+
+/* ── Schedule table ── */
+.schedule-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;border-radius:16px;overflow:hidden;box-shadow:0 10px 28px -18px rgba(74,51,68,.35);}
+.schedule-header{background:#4A3344;color:#fff;font-weight:700;font-size:14px;padding:14px 18px;}
+.schedule-cell{padding:14px 18px;font-size:14.5px;color:#4A3344;border-bottom:1px solid rgba(74,51,68,.06);}
+.schedule-cell:nth-child(6n+4),.schedule-cell:nth-child(6n+5),.schedule-cell:nth-child(6n+6){background:#FFF9F0;}
+
+/* ── Price cards ── */
+.price-card{background:#fff;border-radius:22px;padding:clamp(24px,3vw,32px);box-shadow:0 14px 34px -26px rgba(74,51,68,.45);text-align:center;position:relative;}
+.price-card.featured{border:2px solid #8E6486;box-shadow:0 24px 50px -28px rgba(142,100,134,.6);}
+.price-ribbon{position:absolute;top:16px;right:-8px;background:linear-gradient(135deg,#8E6486,#B0568C);color:#fff;font-family:'Baloo 2',sans-serif;font-weight:700;font-size:12px;padding:5px 16px 5px 14px;border-radius:999px 0 0 999px;}
+.price-amount{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(28px,3.5vw,36px);color:#8E6486;margin:12px 0 4px;}
+.price-period{font-size:14px;color:#9A8794;font-weight:600;}
+.price-features{margin:20px 0;text-align:left;}
+.price-features li{padding:8px 0;font-size:14.5px;color:#6E5667;display:flex;align-items:baseline;gap:10px;}
+.price-features li::before{content:'\2713';color:#A87C9E;font-weight:800;font-size:15px;}
+
+/* ── Map placeholder ── */
+.map-placeholder{background:linear-gradient(135deg,#E6D6E2,#D4C2EC);border-radius:16px;height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;position:relative;}
+.map-pin{width:32px;height:42px;background:#8E6486;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 4px 12px rgba(142,100,134,.4);}
+
+/* ── Footer ── */
+.footer{background:#3A2838;color:rgba(255,255,255,.78);padding:clamp(40px,5vw,60px) 0 0;}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:clamp(24px,4vw,48px);max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,40px);}
+.footer-logo{filter:brightness(0) invert(1);opacity:.95;height:40px;margin-bottom:14px;}
+.footer h4{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:17px;color:#fff;margin-bottom:14px;}
+.footer a{display:block;padding:4px 0;font-size:14.5px;color:rgba(255,255,255,.7);transition:color .15s;}
+.footer a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:clamp(32px,4vw,48px);padding:20px clamp(16px,4vw,40px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;max-width:1120px;margin-left:auto;margin-right:auto;}
+.footer-bottom span{font-size:13px;color:rgba(255,255,255,.55);}
+
+/* ── Responsive ── */
+@media(max-width:759px){
+  .desktop-nav{display:none!important;}
+  .hamburger{display:flex;}
+  .sticky-cta{display:block;}
+  .spacer-mobile{display:block;}
+  .fact:not(:last-child)::after{display:none;}
+  .facts-card{gap:8px;}
+  .fact{flex:1 1 45%;padding:8px 10px;}
+  .hero-img-stack{aspect-ratio:1;}
+  .schedule-grid{grid-template-columns:1fr;border-radius:12px;}
+  .schedule-header:nth-child(2),.schedule-header:nth-child(3){display:none;}
+  .schedule-cell{display:block;padding:10px 16px;}
+  .schedule-cell:nth-child(3n+1)::before{content:'';display:block;height:1px;background:rgba(74,51,68,.1);margin-bottom:8px;}
+  .platno-flex{flex-direction:column-reverse;}
+}
+@media(min-width:760px){
+  .desktop-nav{display:flex!important;}
+  .hamburger{display:none!important;}
+  .mobile-menu{display:none!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ HEADER ════════════ -->
+<header class="header">
+  <a href="#hero"><img src="assets/artico-logo.svg" alt="Artico — Young Artists" class="header-logo"></a>
+  <nav class="desktop-nav">
+    <a href="#programi">Programi</a>
+    <a href="#kako">Kako funkcioniše</a>
+    <a href="#galerija">Galerija</a>
+    <a href="#za-firme">Za firme</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="#kontakt" class="cta-pill">Probni čas</a>
+  </nav>
+  <button class="hamburger" onclick="document.getElementById('mob-menu').classList.toggle('open')" aria-label="Meni">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div id="mob-menu" class="mobile-menu">
+  <a href="#programi" onclick="closeMob()">Programi</a>
+  <a href="#kako" onclick="closeMob()">Kako funkcioniše</a>
+  <a href="#galerija" onclick="closeMob()">Galerija</a>
+  <a href="#za-firme" onclick="closeMob()">Za firme</a>
+  <a href="#kontakt" onclick="closeMob()">Kontakt</a>
+  <a href="#kontakt" class="mob-cta" onclick="closeMob()">Prijavi na probni čas</a>
+</div>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-blob" style="top:-70px;left:-60px;width:340px;height:340px;background:radial-gradient(circle at 35% 35%,#ECC6E0,rgba(243,198,212,0) 70%);opacity:.85;animation:floatA 11s ease-in-out infinite;"></div>
+  <div class="hero-blob" style="top:-30px;right:-40px;width:380px;height:380px;background:radial-gradient(circle at 50%,#D4C2EC,rgba(195,220,242,0) 70%);filter:blur(38px);opacity:.8;animation:floatB 13s ease-in-out infinite;"></div>
+  <div class="hero-blob" style="bottom:-60px;left:30%;width:300px;height:300px;background:radial-gradient(circle at 50%,#E6D6E2,rgba(232,214,226,0) 70%);opacity:.75;animation:floatC 15s ease-in-out infinite;"></div>
+
+  <div class="container hero-flex">
+    <div class="hero-text">
+      <span class="eyebrow" style="display:inline-block;transform:rotate(-2deg);margin-bottom:8px;">ARTICO · dečiji kreativni atelje</span>
+      <h1 style="margin:6px 0 18px;">Mesto gde deca postaju <span style="background:linear-gradient(120deg,#B0568C,#8E6486 55%,#A87C9E);-webkit-background-clip:text;background-clip:text;color:transparent;">ono što jesu</span></h1>
+      <p class="lead" style="margin:0 0 22px;">U Articu deca od 7 do 14 godina crtaju, slikaju i stvaraju — manje vremena uz ekrane, više mašte, boja i osmeha. U malim grupama, uz mentora koji ih razume.</p>
+      <div class="location-pill">
+        <span class="location-dot"></span>
+        <span style="font-weight:700;font-size:15px;color:#4A3344;">Šolina 7A, Dedinje, Beograd</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:13px;align-items:center;">
+        <a href="#kontakt" class="btn-primary">Prijavi dete na besplatan probni čas</a>
+        <a href="#programi" class="btn-outline">Pogledaj programe</a>
+      </div>
+      <div class="handwritten">prvi čas je na nama — bez ikakve obaveze</div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-stack">
+        <img src="assets/1782399548387132.jpg" alt="Deca slikaju u Artico ateljeu">
+        <img src="assets/1782399522865172.jpg" alt="Dečji radovi">
+        <img src="assets/1782399528318856.jpg" alt="Polaznici sa završenim radovima">
+        <span class="hero-tape"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FACTS BAR ════════════ -->
+<div class="facts-bar container">
+  <div class="facts-card">
+    <div class="fact"><span class="fact-num" style="color:#8E6486;">7–14</span><span class="fact-label">godina</span></div>
+    <div class="fact"><span class="fact-num" style="color:#B79BD8;">6–10</span><span class="fact-label">u grupi</span></div>
+    <div class="fact"><span class="fact-num" style="color:#A87C9E;">4–8</span><span class="fact-label">termina mesečno</span></div>
+    <div class="fact"><span class="fact-num" style="color:#D89BC4;">75–90</span><span class="fact-label">min po času</span></div>
+    <div class="fact"><span class="fact-num" style="color:#CC8FB4;">1:1</span><span class="fact-label">individualni časovi</span></div>
+  </div>
+</div>
+
+<!-- ════════════ ZAŠTO ARTICO ════════════ -->
+<section class="section" id="zasto">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:clamp(32px,4vw,48px);">
+      <span class="eyebrow-light">zašto baš Artico</span>
+      <h2 style="margin:6px 0 16px;">Zašto Artico?</h2>
+      <p class="lead mx-auto" style="max-width:36em;">Danas deca odrastaju okružena ekranima. Telefoni, tableti, računari — sve to nudi trenutnu zabavu, ali polako oduzima nešto što se ne može nadoknaditi: sposobnost da zamisle, stvore, izraze i veruju u sebe.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card card-hover">
+        <div class="benefit-icon" style="background:linear-gradient(135deg,#ECC6E0,#D89BC4);">
+          <span>&#9997;</span>
+        </div>
+        <h3>Ruke umesto ekrana</h3>
+        <p style="font-size:14.5px;color:#6E5667;">Ruke koje drže olovku umesto telefona. Oči koje posmatraju boje umesto piksela.</p>
+      </div>
+      <div class="card card-hover">
+        <div class="benefit-icon" style="background:linear-gradient(135deg,#D4C2EC,#B79BD8);">
+          <span>&#128065;</span>
+        </div>
+        <h3>Pažnja koju zaslužuju</h3>
+        <p style="font-size:14.5px;color:#6E5667;">Male grupe — 6 do 10 dece — upravo zato da nijedno dete ne prođe nezapaženo.</p>
+      </div>
+      <div class="card card-hover">
+        <div class="benefit-icon" style="background:linear-gradient(135deg,#E6D6E2,#A87C9E);">
+          <span>&#127793;</span>
+        </div>
+        <h3>Personalizovan pristup</h3>
+        <p style="font-size:14.5px;color:#6E5667;">Vodimo računa gde je svaki polaznik, šta mu ide teže, šta ga zapali i kako da izvučemo ono najbolje.</p>
+      </div>
+      <div class="card card-hover">
+        <div class="benefit-icon" style="background:linear-gradient(135deg,#F7E0A8,#D89BC4);">
+          <span>&#127912;</span>
+        </div>
+        <h3>Mašta i kreativno razmišljanje</h3>
+        <p style="font-size:14.5px;color:#6E5667;">Um koji stvara umesto konzumira. Deca pronalaze radost u procesu, ne samo u rezultatu.</p>
+      </div>
+      <div class="card card-hover">
+        <div class="benefit-icon" style="background:linear-gradient(135deg,#ECC6E0,#B79BD8);">
+          <span>&#128170;</span>
+        </div>
+        <h3>Samopouzdanje kroz stvaranje</h3>
+        <p style="font-size:14.5px;color:#6E5667;">Kada dete završi rad i kaže „ovo sam ja napravio" — to je trenutak koji menja sve.</p>
+      </div>
+      <div class="card card-hover">
+        <div class="benefit-icon" style="background:linear-gradient(135deg,#D4C2EC,#A87C9E);">
+          <span>&#129309;</span>
+        </div>
+        <h3>Drugarstvo bez ekrana</h3>
+        <p style="font-size:14.5px;color:#6E5667;">Deca stiču prijatelje na najlepši način: radeći nešto što vole, rame uz rame.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ ŠTA SE DEŠAVA ════════════ -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div style="max-width:780px;margin:0 auto;">
+      <span class="eyebrow-light">šta se ovde zapravo dešava</span>
+      <h2 style="margin:6px 0 20px;">Više od radionice</h2>
+      <p class="lead" style="margin-bottom:16px;">Artico nije samo radionica. To je prostor gde svako dete dobija pažnju, vreme i slobodu da se razvija sopstvenim tempom.</p>
+      <p class="lead" style="margin-bottom:16px;">Kroz crtanje, slikanje, modni dizajn i modelovanje, deca ne uče samo tehniku — uče da veruju svojim rukama, svojim idejama i sebi.</p>
+      <p class="lead">A napredak koji se ovde dešava nije slučajan. Svako dete dobija personalizovan pristup — vodimo računa o tome gde je svaki polaznik, šta mu ide teže, šta ga zapali, i kako da iz njega izvučemo ono najbolje.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ PROGRAMI ════════════ -->
+<section class="section" id="programi" style="padding-top:0;">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:clamp(28px,4vw,44px);">
+      <span class="eyebrow-light">tri programa, jedna misija</span>
+      <h2 style="margin:6px 0 0;">Naši programi</h2>
+    </div>
+
+    <!-- Program 1 -->
+    <div class="card" style="margin-bottom:clamp(20px,3vw,32px);overflow:hidden;">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,36px);align-items:center;">
+        <div style="flex:1 1 340px;min-width:260px;">
+          <span class="program-tag" style="background:rgba(236,198,224,.4);color:#B0568C;">Crtanje i slikanje</span>
+          <h2 style="font-size:clamp(24px,3.5vw,34px);margin-bottom:14px;">Kreativne radionice crtanja i slikanja</h2>
+          <p style="color:#6E5667;margin-bottom:16px;">Od prvih linija i oblika do samostalnih projekata i izložbenih radova. Deca prolaze kroz tri nivoa koji se prirodno nadovezuju, razvijajući finu motoriku, koncentraciju, osećaj za kompoziciju i boje — i polako, bez pritiska, pronalaze svoj likovni jezik.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+            <span style="background:#F5EFE6;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#4A3344;">osnove crtanja</span>
+            <span style="background:#F5EFE6;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#4A3344;">kompozicija i proporcije</span>
+            <span style="background:#F5EFE6;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#4A3344;">rad sa bojama</span>
+          </div>
+          <p style="font-size:14px;color:#9A8794;">Uzrast 7–14 godina</p>
+        </div>
+        <div style="flex:1 1 300px;min-width:240px;">
+          <div style="border-radius:16px;overflow:hidden;"><img src="assets/178239951739269.jpg" alt="Radionica crtanja" style="width:100%;height:260px;object-fit:cover;"></div>
+        </div>
+      </div>
+      <!-- Levels -->
+      <div style="margin-top:clamp(24px,3vw,36px);">
+        <h3 style="margin-bottom:16px;">Putokaz napredovanja — tri nivoa</h3>
+        <div class="grid-3">
+          <div style="background:rgba(216,155,196,.12);border-radius:16px;padding:20px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#ECC6E0,#D89BC4);display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',sans-serif;font-weight:800;color:#fff;margin-bottom:10px;">1</div>
+            <h3 style="font-size:17px;">Osnove crtanja i boja</h3>
+            <p style="font-size:14px;color:#6E5667;">Linije, oblici, osnovne tehnike i upoznavanje sa materijalima.</p>
+          </div>
+          <div style="background:rgba(183,155,216,.12);border-radius:16px;padding:20px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#D4C2EC,#B79BD8);display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',sans-serif;font-weight:800;color:#fff;margin-bottom:10px;">2</div>
+            <h3 style="font-size:17px;">Kreativno izražavanje</h3>
+            <p style="font-size:14px;color:#6E5667;">Rad sa kompozicijom, bojama i sopstvenim stilom.</p>
+          </div>
+          <div style="background:rgba(168,124,158,.12);border-radius:16px;padding:20px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#E6D6E2,#A87C9E);display:flex;align-items:center;justify-content:center;font-family:'Baloo 2',sans-serif;font-weight:800;color:#fff;margin-bottom:10px;">3</div>
+            <h3 style="font-size:17px;">Mali umetnici</h3>
+            <p style="font-size:14px;color:#6E5667;">Samostalni projekti, izložba radova i diploma.</p>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:24px;text-align:center;"><a href="#kontakt" class="btn-primary" style="font-size:16px;">Prijavi na probni čas</a></div>
+    </div>
+
+    <!-- Program 2 -->
+    <div class="card" style="margin-bottom:clamp(20px,3vw,32px);overflow:hidden;">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,36px);align-items:center;flex-direction:row-reverse;">
+        <div style="flex:1 1 340px;min-width:260px;">
+          <span class="program-tag" style="background:rgba(183,155,216,.35);color:#7B5AA8;">Fashion Atelier</span>
+          <h2 style="font-size:clamp(24px,3.5vw,34px);margin-bottom:14px;">Artico Fashion Atelier</h2>
+          <p style="color:#6E5667;margin-bottom:16px;">Za decu koja vole modu i kreiranje. Kroz dva meseca polaznici uče modnu ilustraciju, crtanje figura, kombinovanje boja, izradu moodboarda i razvoj mini kolekcije. Program se završava Artico Mini Fashion Day — pravom malom revijom sa izložbom radova, fotografisanjem i diplomama.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+            <span style="background:#F5EFE6;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#4A3344;">modna ilustracija</span>
+            <span style="background:#F5EFE6;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#4A3344;">fashion sketch</span>
+            <span style="background:#F5EFE6;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#4A3344;">moodboard</span>
+            <span style="background:#F5EFE6;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#4A3344;">mini kolekcija</span>
+          </div>
+          <p style="font-size:14px;color:#9A8794;">Program modnog dizajna za decu</p>
+        </div>
+        <div style="flex:1 1 300px;min-width:240px;">
+          <div style="border-radius:16px;overflow:hidden;"><img src="assets/1782399537452564.jpg" alt="Fashion Atelier" style="width:100%;height:260px;object-fit:cover;"></div>
+        </div>
+      </div>
+      <!-- Mini Fashion Day highlight -->
+      <div class="band-dark" style="margin-top:clamp(24px,3vw,36px);border-radius:22px;">
+        <div class="hero-blob" style="top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(183,155,216,.3),transparent 70%);opacity:.6;animation:floatA 11s ease-in-out infinite;"></div>
+        <span class="eyebrow-gold">vrhunac programa</span>
+        <h3 style="color:#fff;font-size:clamp(20px,2.5vw,28px);margin:8px 0 12px;">Artico Mini Fashion Day</h3>
+        <p style="color:rgba(255,255,255,.78);max-width:32em;">Prava mala revija sa izložbom ilustracija, fotografisanjem i dodelom sertifikata. Dan kada se sve što su naučili pretvori u pravi modni događaj.</p>
+      </div>
+      <div style="margin-top:24px;text-align:center;"><a href="#kontakt" class="btn-primary" style="font-size:16px;">Prijavi na probni čas</a></div>
+    </div>
+
+    <!-- Program 3 -->
+    <div class="card" style="overflow:hidden;">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(20px,3vw,36px);align-items:center;">
+        <div style="flex:1 1 340px;min-width:260px;">
+          <span class="program-tag" style="background:rgba(168,124,158,.2);color:#7A5470;">3D radionica</span>
+          <h2 style="font-size:clamp(24px,3.5vw,34px);margin-bottom:14px;">3D radionica</h2>
+          <p style="color:#6E5667;margin-bottom:16px;">Od crteža do prave figurice: dete nacrta junaka, modeluje ga, a mi ga štampamo na 3D štampaču.</p>
+          <p style="color:#6E5667;margin-bottom:16px;">Igra preko makete do figure, finalni rad 3D figura odštampana na 3D štampaču.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+            <span style="background:#F5EFE6;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#4A3344;">crtež</span>
+            <span style="background:#F5EFE6;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#4A3344;">maketa</span>
+            <span style="background:#F5EFE6;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#4A3344;">3D figura</span>
+            <span style="background:#F5EFE6;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#4A3344;">3D štampa</span>
+          </div>
+        </div>
+        <div style="flex:1 1 300px;min-width:240px;">
+          <div style="border-radius:16px;overflow:hidden;"><img src="assets/1782399520231726.jpg" alt="3D radionica" style="width:100%;height:260px;object-fit:cover;"></div>
+        </div>
+      </div>
+      <div style="margin-top:24px;text-align:center;"><a href="#kontakt" class="btn-primary" style="font-size:16px;">Prijavi na probni čas</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ VELIKO PLATNO ════════════ -->
+<section class="section platno-section" id="platno">
+  <div class="hero-blob" style="top:20%;right:-80px;width:300px;height:300px;background:radial-gradient(circle,#ECC6E0,transparent 70%);opacity:.6;animation:floatB 13s ease-in-out infinite;"></div>
+  <div class="container">
+    <div class="platno-flex">
+      <div class="platno-img">
+        <img src="assets/1782399521425431.jpg" alt="Dete slika na velikom platnu">
+      </div>
+      <div class="platno-text">
+        <span class="eyebrow">veliko platno — veliki korak</span>
+        <h2 style="margin:8px 0 20px;">Ponekad treba nešto više od formata A4</h2>
+        <p class="lead" style="margin-bottom:16px;">Nešto što zahteva celo telo, celu pažnju i celu dušu.</p>
+        <p style="color:#6E5667;margin-bottom:16px;">U Artico-u nudimo i individualne projekte na velikom slikarskom platnu — uz punu podršku, svaki polaznik prolazi kroz proces od prve ideje do završnog poteza četkom na velikom formatu.</p>
+        <p style="color:#6E5667;margin-bottom:24px;">Kada dete stane ispred svog završenog platna — nečega što je nastalo isključivo iz njegovih ili njenih ruku — dogodi se nešto posebno. Taj osećaj nije samo ponos. To je duboko, trajno uverenje: <strong>mogu da stvorim nešto veliko.</strong></p>
+        <p style="font-family:'Caveat',cursive;font-size:20px;color:#6F4A67;transform:rotate(-1deg);">To samopouzdanje odlazi kući zajedno sa platnom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ NAPREDAK ════════════ -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="band-dark" style="text-align:center;">
+      <div class="hero-blob" style="top:-40px;left:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(216,155,196,.2),transparent 70%);opacity:.7;animation:floatC 15s ease-in-out infinite;"></div>
+      <div class="hero-blob" style="bottom:-40px;right:-40px;width:250px;height:250px;background:radial-gradient(circle,rgba(183,155,216,.2),transparent 70%);opacity:.6;animation:floatA 11s ease-in-out infinite;"></div>
+      <span class="eyebrow-gold">napredak koji se vidi · 1:1 sa mentorom</span>
+      <h2 style="color:#fff;margin:8px 0 16px;">Ovde deca ne dolaze da provedu jedan ciklus. Dolaze da rastu.</h2>
+      <p style="color:rgba(255,255,255,.78);max-width:34em;margin:0 auto;font-size:clamp(16px,1.8vw,19px);line-height:1.6;">Kroz mesečne cikluse, svaki polaznik gradi na onome što je naučio prethodni mesec. Rad je 1:1 sa mentorom — nema žurbe, nema poređenja sa drugima. Postoji samo tvoje dete i njegov ili njen put.</p>
+      <p style="color:rgba(255,255,255,.6);margin-top:16px;font-family:'Caveat',cursive;font-size:20px;">A kada na kraju ciklusa vide šta su napravili — to nije samo crtež. To je dokaz da mogu.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ KAKO FUNKCIONIŠE + CENOVNIK ════════════ -->
+<section class="section" id="kako">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:clamp(28px,4vw,44px);">
+      <span class="eyebrow-light">jasno i bez skrivanja</span>
+      <h2 style="margin:6px 0 12px;">Kako funkcioniše i koliko košta</h2>
+      <p class="lead mx-auto">1 mesec = 4–8 termina, jednom ili dva puta nedeljno, 75–90 minuta. Napredovanje kroz nivoe.</p>
+    </div>
+
+    <!-- Schedule -->
+    <h3 style="margin-bottom:16px;">Raspored termina</h3>
+    <div class="schedule-grid" style="margin-bottom:clamp(28px,4vw,44px);">
+      <div class="schedule-header">Uzrast</div>
+      <div class="schedule-header">Termin</div>
+      <div class="schedule-header">Program</div>
+      <div class="schedule-cell"><strong>7–9 god.</strong></div><div class="schedule-cell">Utorak 17:30</div><div class="schedule-cell">Crtanje i slikanje</div>
+      <div class="schedule-cell"><strong>10–14 god.</strong></div><div class="schedule-cell">Četvrtak 18:00</div><div class="schedule-cell">Crtanje i slikanje</div>
+      <div class="schedule-cell"><strong>9–13 god.</strong></div><div class="schedule-cell">Subota 11:00</div><div class="schedule-cell">Fashion Atelier</div>
+      <div class="schedule-cell"><strong>Po dogovoru</strong></div><div class="schedule-cell">Fleksibilno</div><div class="schedule-cell">Individualni časovi</div>
+    </div>
+    <p style="font-size:13px;color:#9A8794;margin-top:-24px;margin-bottom:clamp(28px,4vw,44px);">Termini su okvirni i ažuriraju se za svaki novi ciklus.</p>
+
+    <!-- Pricing -->
+    <h3 style="margin-bottom:16px;">Cenovnik</h3>
+    <p style="font-size:14.5px;color:#6E5667;margin-bottom:24px;">U cenu je uvek uključen sav materijal, fotografisanje radova, diploma i završni događaj.</p>
+    <div class="grid-3" style="margin-bottom:24px;">
+      <div class="price-card">
+        <h3>Crtanje i slikanje</h3>
+        <div class="price-amount">5.900 RSD</div>
+        <div class="price-period">mesečno</div>
+        <ul class="price-features">
+          <li>4–8 termina (75–90 min)</li>
+          <li>Sav materijal uključen</li>
+          <li>Diploma i završni događaj</li>
+        </ul>
+        <a href="#kontakt" class="btn-soft">Prijavi se</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-ribbon">najtraženije</div>
+        <h3>Fashion Atelier</h3>
+        <div class="price-amount">6.500 RSD</div>
+        <div class="price-period">mesečno</div>
+        <ul class="price-features">
+          <li>4–8 termina mesečno</li>
+          <li>Materijal i moodboard set</li>
+          <li>Mini Fashion Day + sertifikat</li>
+        </ul>
+        <a href="#kontakt" class="btn-primary" style="font-size:15px;padding:13px 24px;">Prijavi se</a>
+      </div>
+      <div class="price-card">
+        <h3>Individualni čas</h3>
+        <div class="price-amount">2.500 RSD</div>
+        <div class="price-period">po času</div>
+        <ul class="price-features">
+          <li>Termin po dogovoru</li>
+          <li>Rad na meri deteta</li>
+          <li>Sav materijal uključen</li>
+        </ul>
+        <a href="#kontakt" class="btn-soft">Prijavi se</a>
+      </div>
+    </div>
+    <div style="background:rgba(232,214,226,.3);border-radius:14px;padding:16px 22px;margin-bottom:12px;">
+      <p style="font-size:14.5px;color:#7A5470;font-weight:600;">Drugo dete iz iste porodice ima 15% popusta.</p>
+    </div>
+    <div class="band-sand" style="padding:14px 22px;">
+      <p style="font-size:14px;color:#6E5667;">Mesečna članarina se plaća na početku meseca. Prvi čas je uvek besplatan — bez obaveze.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ GALERIJA ════════════ -->
+<section class="section" id="galerija">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:clamp(24px,3vw,36px);">
+      <span class="eyebrow-light">iz našeg ateljea</span>
+      <h2 style="margin:6px 0 0;">Galerija</h2>
+    </div>
+    <h3 style="margin-bottom:16px;">Atmosfera sa časova</h3>
+    <div class="photo-grid" style="margin-bottom:clamp(28px,3vw,40px);">
+      <img src="assets/1782399548387132.jpg" alt="Čas u Articu" loading="lazy">
+      <img src="assets/178239951739269.jpg" alt="Individualan rad" loading="lazy">
+      <img src="assets/1782399520231726.jpg" alt="Slikanje na platnu" loading="lazy">
+      <img src="assets/1782399516609819.jpg" alt="Dete na štafelaju" loading="lazy">
+    </div>
+    <h3 style="margin-bottom:16px;">Radovi i završni događaji</h3>
+    <div class="photo-grid">
+      <img src="assets/1782399521425431.jpg" alt="Plavi petao — dečji rad" loading="lazy">
+      <img src="assets/1782399528318856.jpg" alt="Deca sa radovima" loading="lazy">
+      <img src="assets/1782399522865172.jpg" alt="Polaznici i radovi" loading="lazy">
+      <img src="assets/1782399537452564.jpg" alt="Materijal za rad" loading="lazy">
+    </div>
+    <div class="band-sand" style="margin-top:clamp(24px,3vw,36px);display:flex;align-items:center;gap:14px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#A87C9E;flex-shrink:0;"></span>
+      <p style="font-size:14px;color:#6E5667;">Fotografije dece objavljujemo isključivo uz pisanu saglasnost roditelja. Gde saglasnosti nema, prikazujemo radove i kadrove bez lica.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DRUGARSTVO ════════════ -->
+<section class="section band-gradient">
+  <div class="container text-center">
+    <span class="eyebrow">drugarstvo koje se rađa pored stola sa bojama</span>
+    <h2 style="margin:8px 0 20px;max-width:28em;" class="mx-auto">Bez takmičenja, bez ekrana između njih</h2>
+    <p class="lead mx-auto" style="max-width:34em;">Nešto posebno se dešava kada deca zajedno stvaraju. Samo zajednički rad, smeh, razmena ideja i ponos zbog tuđeg napretka. U Artico-u deca stiču prijatelje na najlepši mogući način: radeći nešto što vole, rame uz rame.</p>
+  </div>
+</section>
+
+<!-- ════════════ ZA FIRME ════════════ -->
+<section class="section" id="za-firme">
+  <div class="container">
+    <div class="card" style="overflow:hidden;">
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,48px);align-items:center;">
+        <div style="flex:1 1 400px;min-width:280px;">
+          <span class="eyebrow" style="display:inline-block;margin-bottom:8px;">za firme</span>
+          <h2 style="margin-bottom:14px;">Poklon koji ima pravu vrednost</h2>
+          <p class="lead" style="margin-bottom:16px;">Jer deca vaših zaposlenih zaslužuju više od još jednog dana ispred ekrana.</p>
+          <p style="color:#6E5667;margin-bottom:16px;">Artico nudi program za firme — kao benefit za zaposlene roditelje ili kao korporativni poklon koji ostavlja trag.</p>
+          <p style="color:#6E5667;margin-bottom:16px;">Dok vi gradite biznis, mi brinemo o onome što je najvažnije — o deci vaših ljudi. Svako dete dobija mesto u Artico programu, personalizovan pristup i prostor da stvori nešto što ima duboku, trajnu vrednost.</p>
+          <p style="color:#6E5667;margin-bottom:24px;">Nije to samo čas likovnog. To je dan kada dete vašeg zaposlenog stoji ispred svog platna, svog modnog sketcha ili svog 3D modela i kaže prvi put: <strong>ovo sam ja napravio.</strong></p>
+          <ul class="corp-list">
+            <li>Mesečne programe kao benefit za decu zaposlenih</li>
+            <li>Jednokratne kreativne radionice za timske događaje i family day</li>
+            <li>Individualne projekte na velikom platnu kao ekskluzivan poklon</li>
+          </ul>
+          <div style="margin-top:28px;">
+            <a href="#kontakt" class="btn-primary" style="font-size:16px;">Kontaktirajte nas za firmske pakete</a>
+          </div>
+        </div>
+        <div style="flex:1 1 280px;min-width:240px;">
+          <img src="assets/1782399528318856.jpg" alt="Deca sa radovima" style="width:100%;border-radius:20px;box-shadow:0 18px 40px -20px rgba(74,51,68,.45);aspect-ratio:3/4;object-fit:cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ ARTICO JE MESTO KOJE DECA PAMTE ════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="band-dark" style="text-align:center;padding:clamp(40px,6vw,72px);">
+      <div class="hero-blob" style="top:-50px;left:-50px;width:220px;height:220px;background:radial-gradient(circle,rgba(216,155,196,.25),transparent 70%);opacity:.8;animation:floatA 11s ease-in-out infinite;"></div>
+      <div class="hero-blob" style="bottom:-60px;right:-40px;width:280px;height:280px;background:radial-gradient(circle,rgba(183,155,216,.2),transparent 70%);opacity:.6;animation:floatB 13s ease-in-out infinite;"></div>
+      <span class="eyebrow-gold">artico je mesto koje deca pamte</span>
+      <h2 style="color:#fff;margin:10px auto 20px;max-width:20em;">Prostor za stvaranje. Pažnja koju zaslužuju. Radost koja ostaje.</h2>
+      <p style="color:rgba(255,255,255,.78);max-width:34em;margin:0 auto 12px;font-size:clamp(16px,1.8vw,19px);line-height:1.6;">Pamte ga po mirisu boje i papira. Po učitelju koji je zapamtio baš njihovu ideju. Po danu kada su prvi put napravili nešto i pomislili — ovo je moje, i ovo je lepo.</p>
+      <p style="color:rgba(255,255,255,.6);max-width:34em;margin:0 auto;font-size:clamp(15px,1.6vw,17px);line-height:1.6;">U vremenu kada pažnja dece postaje sve kraća, a kreativnost sve zanemarenija — Artico vraća deci ono što im pripada.</p>
+      <div style="margin-top:32px;">
+        <a href="#kontakt" class="btn-primary" style="background:#fff;color:#4A3344;box-shadow:0 12px 26px -8px rgba(0,0,0,.25);">Prijavi dete na besplatan probni čas</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ KONTAKT I PRIJAVA ════════════ -->
+<section class="section" id="kontakt">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:clamp(28px,4vw,44px);">
+      <span class="eyebrow">prvi čas je besplatan</span>
+      <h2 style="margin:6px 0 12px;">Prijavite dete na probni čas</h2>
+      <p class="lead mx-auto">Popunite kratku prijavu — javljamo vam se istog dana da dogovorimo termin.</p>
+    </div>
+
+    <div class="grid-2">
+      <!-- Form -->
+      <div class="form-card" id="form-card">
+        <div id="form-view">
+          <h3 style="margin-bottom:20px;">Prijava za probni čas</h3>
+          <form id="signup-form" novalidate>
+            <div class="form-group" id="fg-parent">
+              <label for="parent">Ime i prezime roditelja</label>
+              <input type="text" id="parent" placeholder="npr. Jelena Petrović" required>
+              <div class="form-error">Unesite ime i prezime</div>
+            </div>
+            <div class="form-group" id="fg-age">
+              <label for="age">Uzrast deteta</label>
+              <select id="age" required>
+                <option value="">Izaberite uzrast</option>
+                <option>7 godina</option><option>8 godina</option><option>9 godina</option><option>10 godina</option>
+                <option>11 godina</option><option>12 godina</option><option>13 godina</option><option>14 godina</option>
+              </select>
+              <div class="form-error">Izaberite uzrast deteta</div>
+            </div>
+            <div class="form-group" id="fg-program">
+              <label for="program">Program</label>
+              <select id="program" required>
+                <option value="">Izaberite program</option>
+                <option>Kreativne radionice crtanja i slikanja</option>
+                <option>Artico Fashion Atelier</option>
+                <option>3D radionica</option>
+                <option>Individualni časovi</option>
+                <option>Nisam siguran/na — pomozite mi</option>
+              </select>
+              <div class="form-error">Izaberite program</div>
+            </div>
+            <div class="form-group" id="fg-phone">
+              <label for="phone">Kontakt telefon</label>
+              <input type="tel" id="phone" placeholder="npr. 060 123 4567" required>
+              <div class="form-error">Unesite kontakt telefon</div>
+            </div>
+            <div class="form-group">
+              <label for="note">Napomena (opciono)</label>
+              <textarea id="note" rows="3" placeholder="Poruka, pitanje ili napomena..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;font-size:17px;padding:17px;">Prijavi dete na besplatan probni čas</button>
+            <p style="font-size:12.5px;color:#9A8794;margin-top:12px;text-align:center;">Podatke koristimo isključivo za kontakt povodom prijave i ne delimo ih trećim licima.</p>
+          </form>
+        </div>
+        <div class="form-success" id="form-success">
+          <div class="success-circle">&#10003;</div>
+          <h2 style="font-size:clamp(22px,3vw,30px);margin-bottom:12px;">Hvala! Prijava je poslata.</h2>
+          <p style="color:#6E5667;margin-bottom:24px;">Javljamo vam se istog dana na ostavljeni broj telefona da dogovorimo termin probnog časa.</p>
+          <button class="btn-soft" onclick="resetForm()">Pošalji novu prijavu</button>
+        </div>
+      </div>
+
+      <!-- Contact info + Map -->
+      <div>
+        <div class="card" style="margin-bottom:20px;">
+          <h3 style="margin-bottom:16px;">Direktan kontakt</h3>
+          <a href="tel:+38164123456" class="contact-row">
+            <div class="contact-icon">&#128222;</div>
+            <span>+381 64 123 4567</span>
+          </a>
+          <a href="viber://chat?number=38164123456" class="contact-row">
+            <div class="contact-icon">&#128172;</div>
+            <span>Viber</span>
+          </a>
+          <a href="https://wa.me/38164123456" class="contact-row" target="_blank" rel="noopener">
+            <div class="contact-icon">&#128172;</div>
+            <span>WhatsApp</span>
+          </a>
+          <a href="mailto:zdravo@artico.rs" class="contact-row">
+            <div class="contact-icon">&#9993;</div>
+            <span>zdravo@artico.rs</span>
+          </a>
+          <a href="https://instagram.com/artico.atelje" class="contact-row" target="_blank" rel="noopener">
+            <div class="contact-icon">&#128247;</div>
+            <span>@artico.atelje</span>
+          </a>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden;">
+          <div class="map-placeholder">
+            <div class="map-pin"></div>
+            <p style="font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#6E5667;margin-top:8px;">Google mapa · Šolina 7A</p>
+          </div>
+          <div style="padding:16px 22px;">
+            <p style="font-weight:700;font-size:15px;color:#4A3344;">Šolina 7A, Dedinje, Beograd</p>
+            <p style="font-size:14px;color:#9A8794;">Lako dostupno javnim prevozom.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div style="margin-top:clamp(40px,6vw,72px);">
+      <h2 class="text-center" style="margin-bottom:clamp(20px,3vw,32px);">Česta pitanja</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Da li postoji probni čas?<span class="faq-toggle">+</span></button>
+          <div class="faq-a"><p>Da, prvi čas je besplatan i bez obaveze. Dođite, probajte i odlučite.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Šta dete treba da ponese?<span class="faq-toggle">+</span></button>
+          <div class="faq-a"><p>Ništa — sav materijal obezbeđujemo mi. Dete treba samo da dođe spremno za kreativnost.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Šta ako dete propusti čas?<span class="faq-toggle">+</span></button>
+          <div class="faq-a"><p>Nadoknada u dogovoru, u okviru istog ciklusa.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Kako se plaća?<span class="faq-toggle">+</span></button>
+          <div class="faq-a"><p>Mesečna članarina na početku meseca. Drugo dete iz iste porodice ima 15% popusta.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Kako se formiraju grupe?<span class="faq-toggle">+</span></button>
+          <div class="faq-a"><p>Po uzrastu i nivou, 6–10 polaznika u grupi. Svako dete dobija individualan pristup.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Da li dete mora da ima predznanje?<span class="faq-toggle">+</span></button>
+          <div class="faq-a"><p>Ne. Krećemo od osnova i prilagođavamo tempo svakom detetu.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Koliko traje čas?<span class="faq-toggle">+</span></button>
+          <div class="faq-a"><p>75–90 minuta, jednom nedeljno, u stalnom terminu.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <img src="assets/artico-logo.svg" alt="Artico" class="footer-logo">
+      <p style="font-size:14px;margin-top:8px;">Dečiji kreativni atelje u srcu Beograda. Mesto gde deca postaju ono što jesu.</p>
+    </div>
+    <div>
+      <h4>Sajt</h4>
+      <a href="#programi">Programi</a>
+      <a href="#kako">Kako funkcioniše</a>
+      <a href="#galerija">Galerija</a>
+      <a href="#za-firme">Za firme</a>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <a href="tel:+38164123456">+381 64 123 4567</a>
+      <a href="mailto:zdravo@artico.rs">zdravo@artico.rs</a>
+      <a href="#">Šolina 7A, Dedinje, Beograd</a>
+      <a href="https://instagram.com/artico.atelje" target="_blank" rel="noopener">@artico.atelje</a>
+    </div>
+    <div>
+      <h4>Prvi čas je besplatan</h4>
+      <p style="font-size:14px;margin-bottom:16px;">Prijavite dete i uverite se koliko kreativnost može da promeni sve.</p>
+      <a href="#kontakt" class="btn-primary" style="font-size:15px;padding:13px 22px;">Prijavi dete</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Artico &middot; Sva prava zadržana</span>
+    <span><a href="#" style="color:rgba(255,255,255,.55);">Politika privatnosti</a> &middot; <a href="#" style="color:rgba(255,255,255,.55);">Uslovi korišćenja</a></span>
+  </div>
+</footer>
+
+<!-- ════════════ STICKY MOBILE CTA ════════════ -->
+<div class="sticky-cta">
+  <a href="#kontakt" class="btn-primary sticky-cta" style="display:block;text-align:center;width:100%;font-size:16px;padding:15px;position:static;border:none;box-shadow:0 12px 26px -8px rgba(142,100,134,.6);">Prijavi dete na besplatan probni čas</a>
+</div>
+<div class="spacer-mobile"></div>
+
+<script>
+function closeMob(){document.getElementById('mob-menu').classList.remove('open');}
+
+// FAQ accordion
+function toggleFaq(btn){
+  var item=btn.parentElement;
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(el){el.classList.remove('open');});
+  if(!wasOpen)item.classList.add('open');
+}
+
+// Form validation
+document.getElementById('signup-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var valid=true;
+  var fields=[
+    {id:'fg-parent',input:'parent'},
+    {id:'fg-age',input:'age'},
+    {id:'fg-program',input:'program'},
+    {id:'fg-phone',input:'phone'}
+  ];
+  fields.forEach(function(f){
+    var fg=document.getElementById(f.id);
+    var val=document.getElementById(f.input).value.trim();
+    if(!val){fg.classList.add('has-error');valid=false;}
+    else{fg.classList.remove('has-error');}
+  });
+  if(valid){
+    document.getElementById('form-view').style.display='none';
+    document.getElementById('form-success').style.display='block';
+  }
+});
+
+// Clear errors on input
+document.querySelectorAll('#signup-form input, #signup-form select').forEach(function(el){
+  el.addEventListener('change',function(){
+    this.closest('.form-group').classList.remove('has-error');
+  });
+  el.addEventListener('input',function(){
+    this.closest('.form-group').classList.remove('has-error');
+  });
+});
+
+function resetForm(){
+  document.getElementById('signup-form').reset();
+  document.getElementById('form-view').style.display='block';
+  document.getElementById('form-success').style.display='none';
+  document.querySelectorAll('.form-group').forEach(function(fg){fg.classList.remove('has-error');});
+}
+</script>
+
+</body>
+</html>
