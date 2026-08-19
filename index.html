@@ -280,6 +280,15 @@ h3{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(19px,2vw,22p
 .band-gradient{background:linear-gradient(180deg,rgba(247,224,168,.28),rgba(236,198,224,.28));position:relative;overflow:hidden;}
 .band-sand{background:#FAF3E8;border-radius:20px;padding:clamp(24px,3vw,40px);}
 
+/* ── Recenzije ── */
+.review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2vw,24px);margin-bottom:clamp(24px,3vw,36px);}
+.review-card{background:#fff;border-radius:22px;padding:clamp(22px,2.6vw,30px);box-shadow:0 14px 34px -26px rgba(74,51,68,.45);display:flex;flex-direction:column;gap:12px;margin:0;}
+.review-stars{color:#F5B301;font-size:17px;letter-spacing:2px;}
+.review-card blockquote{margin:0;color:#6E5667;font-size:15.5px;line-height:1.6;flex-grow:1;}
+.review-card figcaption{font-weight:700;color:#4A3344;font-size:14.5px;display:flex;align-items:center;gap:10px;}
+.review-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#ECC6E0,#B79BD8);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0;}
+.google-badge{display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:999px;padding:10px 20px;box-shadow:0 10px 24px -16px rgba(74,51,68,.4);font-weight:700;color:#4A3344;font-size:15px;}
+
 /* ── Photo grid ── */
 .photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:clamp(10px,1.5vw,16px);}
 .photo-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px;border:2px solid #fff;box-shadow:0 10px 24px -16px rgba(74,51,68,.4);transition:transform .2s;}
@@ -381,6 +390,7 @@ h3{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(19px,2vw,22p
     <a href="#programi">Programi</a>
     <a href="#kako">Kako funkcioniše</a>
     <a href="#galerija">Galerija</a>
+    <a href="#recenzije">Recenzije</a>
     <a href="#za-firme">Za firme</a>
     <a href="#kontakt">Kontakt</a>
     <a href="#kontakt" class="cta-pill">Probni čas</a>
@@ -394,6 +404,7 @@ h3{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(19px,2vw,22p
   <a href="#programi" onclick="closeMob()">Programi</a>
   <a href="#kako" onclick="closeMob()">Kako funkcioniše</a>
   <a href="#galerija" onclick="closeMob()">Galerija</a>
+  <a href="#recenzije" onclick="closeMob()">Recenzije</a>
   <a href="#za-firme" onclick="closeMob()">Za firme</a>
   <a href="#kontakt" onclick="closeMob()">Kontakt</a>
   <a href="#kontakt" class="mob-cta" onclick="closeMob()">Prijavi na probni čas</a>
@@ -800,6 +811,57 @@ h3{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(19px,2vw,22p
   </div>
 </section>
 
+<!-- ════════════ RECENZIJE ════════════ -->
+<section class="section" id="recenzije" style="padding-top:0;">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:clamp(24px,3vw,36px);">
+      <span class="eyebrow-light">šta kažu roditelji</span>
+      <h2 style="margin:6px 0 12px;">Roditelji o Articu</h2>
+      <p class="lead mx-auto">Najbolju sliku o Articu daju roditelji naših polaznika. Sve recenzije možete pročitati na našem Google profilu.</p>
+    </div>
+    <!--
+      NAPOMENA: Google recenzije ovde prenosimo kao običan tekst, namerno BEZ schema/structured-data
+      markup-a (Google ignoriše self-serving ocene za LocalBusiness i kažnjava recenzije trećih
+      strana u structured data). Šablon kartice — kopirati u .review-grid za svaku recenziju:
+
+      <figure class="review-card">
+        <div class="review-stars" aria-label="5 od 5 zvezdica">★★★★★</div>
+        <blockquote>„Tekst recenzije..."</blockquote>
+        <figcaption><span class="review-avatar">J</span> Jelena P. · Google recenzija</figcaption>
+      </figure>
+    -->
+    <div class="review-grid">
+      <figure class="review-card">
+        <div class="review-stars" aria-label="5 od 5 zvezdica">★★★★★</div>
+        <blockquote>„Sjajna atmosfera i za decu i za roditelje 🍀🍀🌸🌸"</blockquote>
+        <figcaption><span class="review-avatar">J</span> Jelena Miljković · Google recenzija</figcaption>
+      </figure>
+      <figure class="review-card">
+        <div class="review-stars" aria-label="5 od 5 zvezdica">★★★★★</div>
+        <blockquote lang="en">"My daughter had the best time ever. She came back with very artistic things. Was perfect."</blockquote>
+        <figcaption><span class="review-avatar">I</span> Ira Gommershtat Levy · Google recenzija</figcaption>
+      </figure>
+      <figure class="review-card">
+        <div class="review-stars" aria-label="5 od 5 zvezdica">★★★★★</div>
+        <blockquote lang="en">"My granddaughter, who is spending her holiday in Belgrade, has been attending art classes with Miss Maja. I can only say that Maja is incredibly patient, highly educated, and has a wonderful way of sharing her knowledge with children. Every class encourages children's imagination, creativity, and confidence, and my granddaughter always comes home full of excitement and with a big smile on her face. The little school in Solina is also a wonderful place for children to play, socialise, and develop their creative skills. We are already looking forward to our next visit to Belgrade."</blockquote>
+        <figcaption><span class="review-avatar">Z</span> Zorana Novaković · Google recenzija</figcaption>
+      </figure>
+    </div>
+    <div class="text-center" style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+      <div class="google-badge">
+        <svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        <span class="review-stars" aria-hidden="true">★★★★★</span>
+        <span>Recenzije na Google-u</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+        <a href="https://maps.app.goo.gl/DQwtcb4iDdBH1sMV8" target="_blank" rel="noopener" class="btn-primary" style="font-size:16px;">Pročitajte recenzije na Google-u</a>
+        <a href="https://search.google.com/local/writereview?placeid=ChIJmcE8vZtxWkcRK25i2gXlsZs" target="_blank" rel="noopener" class="btn-soft" style="font-size:16px;padding:15px 26px;">★ Ostavite nam recenziju</a>
+      </div>
+      <p style="font-size:14px;color:#9A8794;max-width:36em;">Vaše dete je deo Artico priče? Recenzija na Google-u nam znači više nego što mislite — pomaže drugim roditeljima da nas pronađu.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ════════════ DRUGARSTVO ════════════ -->
 <section class="section band-gradient">
   <div class="container text-center">
@@ -1003,6 +1065,7 @@ h3{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(19px,2vw,22p
       <a href="#programi">Programi</a>
       <a href="#kako">Kako funkcioniše</a>
       <a href="#galerija">Galerija</a>
+      <a href="#recenzije">Recenzije</a>
       <a href="#za-firme">Za firme</a>
     </div>
     <div>
@@ -1011,6 +1074,7 @@ h3{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(19px,2vw,22p
       <a href="mailto:artico.create@gmail.com">artico.create@gmail.com</a>
       <a href="https://maps.app.goo.gl/t5DZ9PuHYZzYac8h8" target="_blank" rel="noopener">Šolina 7A, Dedinje, Beograd</a>
       <a href="https://www.instagram.com/artico_solina" target="_blank" rel="noopener">@artico_solina</a>
+      <a href="https://search.google.com/local/writereview?placeid=ChIJmcE8vZtxWkcRK25i2gXlsZs" target="_blank" rel="noopener">★ Ostavite recenziju na Google-u</a>
     </div>
     <div>
       <h4>Prvi čas je besplatan</h4>
